@@ -15,6 +15,7 @@ import { ProductivityGraphComponent } from './components/pages/_graph-time-log/p
 import { GraphEnergyLogComponent } from './components/pages/_graph-energy-log/graph-energy-log/graph-energy-log.component';
 import { BPTGraphComponent } from './components/pages/_graph-energy-log/bptgraph/bptgraph.component';
 import { BPTTableComponent } from './components/pages/_graph-energy-log/bpttable/bpttable.component';
+import { EnergyItemComponent } from './components/pages/_home/energy-item/energy-item.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BPTTableComponent } from './components/pages/_graph-energy-log/bpttable
     ProductivityGraphComponent,
     GraphEnergyLogComponent,
     BPTGraphComponent,
-    BPTTableComponent
+    BPTTableComponent,
+    EnergyItemComponent
   ],
   imports: [
     BrowserModule,
