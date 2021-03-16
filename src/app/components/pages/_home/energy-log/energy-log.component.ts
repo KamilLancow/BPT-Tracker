@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./energy-log.component.css']
 })
 export class EnergyLogComponent implements OnInit {
-
+  //energyElements:Energy[];
+  
   constructor() { }
 
   ngOnInit(): void {
