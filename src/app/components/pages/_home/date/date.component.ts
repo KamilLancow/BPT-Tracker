@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./date.component.css']
 })
 export class DateComponent implements OnInit {
-  today:string = 'date here';
+  day:string = 'date here';
+  currentDate:Date = new Date();
+  
   constructor() { }
 
   ngOnInit(): void {
