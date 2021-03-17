@@ -8,6 +8,17 @@
     margin: 35px auto 0 auto;
 }
 
+@media(max-width: 1280px) {
+    .header {
+        margin: 35px 5% 0;
+    }
+}
+@media(max-width: 768px) {
+    .header {
+        margin: 5% 5% 0;
+    }
+}
+
 .header a {
     width: 30%;
     line-height: 50px;
