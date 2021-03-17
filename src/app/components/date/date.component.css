@@ -1,0 +1,25 @@
+* {
+    font-size: 1.5625rem;
+    font-weight: 700;
+    color: #161985;
+}
+
+.date-container {
+    margin: 50px 0 0 12%;
+}
+
+.date {
+    position: absolute;
+    z-index: 1;
+    vertical-align: middle;
+}
+
+.calendar {
+    cursor: pointer;
+}
+
+input {
+    margin: 0 0 0 55px;
+    padding: 0;
+    opacity: 0;
+}
