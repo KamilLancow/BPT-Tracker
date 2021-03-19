@@ -14,12 +14,99 @@
     vertical-align: middle;
 }
 
-.calendar {
+.calendar-btn  {
     cursor: pointer;
 }
 
 input {
-    margin: 0 0 0 55px;
+    margin: 0 0 0 40px;
     padding: 0;
     opacity: 0;
+}
+
+/***overriding calendar container look***/
+/*adjusting shadow and border*/
+::ng-deep .mat-datepicker-content {
+    border-radius: 15px!important;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, .08)!important;
+}
+::ng-deep .mat-datepicker-content .mat-calendar {
+    height: auto!important;
+}
+
+/***overriding weekdays row***/
+/* hiding line*/
+::ng-deep .mat-calendar-table-header > tr:last-of-type {
+    display: none;
+}
+/* modifying weekdays*/
+::ng-deep .mat-calendar-table-header th {
+    font-weight: 700;
+}
+::ng-deep .mat-calendar-table-header th:nth-child(1):after {
+    content: 'o';
+}
+::ng-deep .mat-calendar-table-header th:nth-child(2):after,
+::ng-deep .mat-calendar-table-header th:nth-child(7):after {
+    content: 'u';
+}
+::ng-deep .mat-calendar-table-header th:nth-child(3):after {
+    content: 'e';
+}
+::ng-deep .mat-calendar-table-header th:nth-child(4):after {
+    content: 'h';
+}
+::ng-deep .mat-calendar-table-header th:nth-child(5):after {
+    content: 'r';
+}
+::ng-deep .mat-calendar-table-header th:nth-child(6):after {
+    content: 'a';
+}
+
+/***overriding calendar font properties***/
+::ng-deep .mat-calendar,
+::ng-deep .mat-calendar .mat-button {
+    font-family: 'Montserrat', sans-serif, Helvetica;
+    font-weight: 600;
+}
+::ng-deep .mat-button {
+    font-weight: 700!important;
+}
+
+/***overriding calendar arrows color***/
+::ng-deep .mat-calendar-arrow {
+    border-top-color: rgb(51, 54, 178);
+}
+::ng-deep .mat-datepicker-content .mat-calendar-next-button,
+::ng-deep .mat-datepicker-content .mat-calendar-previous-button {
+    color: rgb(51, 54, 178);
+}
+
+/***overriding calendar body colors***/
+/* selected day */
+::ng-deep .mat-calendar-body-selected {
+    background-color: rgb(255, 193, 7);
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .15);
+}
+/* focus & hover on day */
+::ng-deep .mat-calendar-body-cell:not(.mat-calendar-body-disabled):hover>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical),
+::ng-deep .cdk-keyboard-focused .mat-calendar-body-active>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical),
+::ng-deep .cdk-program-focused .mat-calendar-body-active>.mat-calendar-body-cell-content:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    background-color: rgba(255, 193, 7, .3);
+}
+/* today */
+::ng-deep .mat-calendar-body-today:not(.mat-calendar-body-selected):not(.mat-calendar-body-comparison-identical) {
+    border-color: transparent;/* rgba(255, 193, 7,.38) */
+    color: rgb(255, 193, 7);
+    text-shadow: 0 3px 5px rgba(0, 0, 0,.07);
+}
+/* today selected */
+::ng-deep .mat-calendar-body-today.mat-calendar-body-selected {
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .15);
+}
+
+/***not displaying month value in calendar body***/
+::ng-deep .mat-calendar-body-label {
+    display: none;
 }

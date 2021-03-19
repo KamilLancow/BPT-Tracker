@@ -21,8 +21,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from "@angular/forms";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatNativeDateModule } from "@angular/material/core";
+import { DateAdapter, MatNativeDateModule } from "@angular/material/core";
 import { MatInputModule } from "@angular/material/input";
+import { CustomDateAdapter } from './components/date/custom-date-adapter';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,9 @@ import { MatInputModule } from "@angular/material/input";
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [],
+  providers: [
+    {provide: DateAdapter, useClass: CustomDateAdapter}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
