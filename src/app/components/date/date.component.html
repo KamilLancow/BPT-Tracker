@@ -1,10 +1,11 @@
 <div class="date-container">
     <div class="date">
-        <span class="calendar" (click)="picker.open()">
+        <span class="calendar-btn" (click)="picker.open()">
             <img src="https://img.icons8.com/color/48/000000/calendar--v2.png"/>
         </span>
-        {{ day | date:'EEEE, d MMMM'}}
+        {{ day | date:'EEEE, d MMMM y'}}
     </div>
-    <input matInput [matDatepicker]="picker" (dateChange)="addEvent($event)">
-    <mat-datepicker #picker></mat-datepicker>
+    <input matInput [matDatepicker]="picker" [value]="day" (dateChange)="addEvent($event)" disabled>
+    <!-- animate calendar button on click -->
+    <mat-datepicker #picker disabled="false"></mat-datepicker>
 </div>
