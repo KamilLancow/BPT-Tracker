@@ -1,6 +1,17 @@
 <div>
-    <h3>Energy levels</h3>
-    <ul>
-        <app-energy-item></app-energy-item><!-- *ngFor="let energy of energyElements" [energyElement]="energy" -->
+    <ul class="hours">
+        <li class="left-arrow">
+            <a>
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </a>
+        </li>
+        <li class="items">
+            <app-energy-item (selected)="onHourSelected($event)" *ngFor="let element of energyHours" [hour]="element"></app-energy-item>
+        </li>
+        <li class="right-arrow">
+            <a>
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </a>
+        </li>
     </ul>
 </div>

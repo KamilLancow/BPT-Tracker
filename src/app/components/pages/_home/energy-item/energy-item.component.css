@@ -1,0 +1,41 @@
+.element {
+    position: relative;
+    display: inline-flex;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 15px;
+    transition: .05s;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, .04);
+}
+
+.element::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    top: 100%;
+    left: 50%;
+    margin-top: -7px;
+    margin-left: -7px;
+    background-color: #3336B2;
+    border-radius: 15px;
+    opacity: 0;
+}
+
+.element:hover {
+    cursor: pointer;
+    box-shadow: 0 3px 25px rgba(0, 0, 0, .08);
+}
+
+.element span {
+    margin: auto;
+    font-weight: 700;
+    font-size: 1.25em;
+    color: #2D2D2D;
+}
+
+.circle::after {
+    opacity: 1;
+}
