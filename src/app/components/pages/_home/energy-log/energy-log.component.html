@@ -1,6 +1,20 @@
-<div>
-    <h3>Energy levels</h3>
-    <ul>
-        <app-energy-item></app-energy-item><!-- *ngFor="let energy of energyElements" [energyElement]="energy" -->
+<div class="container_energy_log">
+    <ul class="hours">
+        <li class="left-arrow">
+            <button (click)="onArrowLeftSelected()">
+                <mat-icon>keyboard_arrow_left</mat-icon>
+            </button>
+        </li>
+        <li class="items" (wheel)="onScroll($event)">
+            <app-energy-item (selected)="onHourSelected($event)" *ngFor="let element of energyHours" [hour]="element"></app-energy-item>
+        </li>
+        <li class="right-arrow">
+            <button (click)="onArrowRightSelected()">
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+        </li>
+    </ul>
+    <ul class="energy_bar">
+        <app-energy-bar-item (selected)="modifyEnergy($event)" *ngFor="let x of [].constructor(10); let i = index" [value]="i+1"></app-energy-bar-item>
     </ul>
 </div>

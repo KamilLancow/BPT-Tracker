@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-energy-item',
@@ -7,9 +8,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EnergyItemComponent implements OnInit {
 
-  constructor() { }
+  @Input() hour!: string;
+  @Output() selected = new EventEmitter<number>();
+  subscription: Subscription;
+  bool_circle: boolean = false;
+
+  constructor() {
+    this.subscription = interval(60000).subscribe(val => this.setCurrentHour());
+  }
 
   ngOnInit(): void {
+    this.setCurrentHour();
+  }
+
+  setCurrentHour() {
+    if (new Date().getHours() == Number(this.hour.length == 4 ? this.hour.substr(0,1) : this.hour.substr(0,2)))
+      this.bool_circle = true;
+      else this.bool_circle = false;
+  }
+
+  toggleCircle() {
+    let classes = {
+      'circle': this.bool_circle
+    }
+
+    return classes;
+  }
+  
+  onClick() {
+    this.selected.emit(Number(this.hour.length == 4 ? this.hour.substr(0,1) : this.hour.substr(0,2)));
   }
 
 }

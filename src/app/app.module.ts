@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,12 +19,11 @@ import { BPTTableComponent } from './components/pages/_graph-energy-log/bpttable
 import { EnergyItemComponent } from './components/pages/_home/energy-item/energy-item.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from "@angular/forms";
 import { MatDatepickerModule } from "@angular/material/datepicker";
-import { MatFormFieldModule } from "@angular/material/form-field";
 import { DateAdapter, MatNativeDateModule } from "@angular/material/core";
-import { MatInputModule } from "@angular/material/input";
 import { CustomDateAdapter } from './components/date/custom-date-adapter';
+import {MatIconModule} from '@angular/material/icon';
+import { EnergyBarItemComponent } from './components/pages/_home/energy-bar-item/energy-bar-item.component';
 
 @NgModule({
   declarations: [
@@ -39,12 +39,15 @@ import { CustomDateAdapter } from './components/date/custom-date-adapter';
     GraphEnergyLogComponent,
     BPTGraphComponent,
     BPTTableComponent,
-    EnergyItemComponent
+    EnergyItemComponent,
+    EnergyBarItemComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     NgbModule,
+    MatIconModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatNativeDateModule
