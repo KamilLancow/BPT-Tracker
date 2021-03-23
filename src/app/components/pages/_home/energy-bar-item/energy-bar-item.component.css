@@ -1,0 +1,8 @@
+li {
+    cursor: not-allowed;
+    opacity: .5;
+}
+
+span {
+    display: none;
+}

@@ -23,6 +23,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { DateAdapter, MatNativeDateModule } from "@angular/material/core";
 import { CustomDateAdapter } from './components/date/custom-date-adapter';
 import {MatIconModule} from '@angular/material/icon';
+import { EnergyBarItemComponent } from './components/pages/_home/energy-bar-item/energy-bar-item.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatIconModule} from '@angular/material/icon';
     GraphEnergyLogComponent,
     BPTGraphComponent,
     BPTTableComponent,
-    EnergyItemComponent
+    EnergyItemComponent,
+    EnergyBarItemComponent
   ],
   imports: [
     BrowserModule,
