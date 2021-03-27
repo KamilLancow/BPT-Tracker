@@ -11,17 +11,19 @@ const $: JQueryStatic = jquery;
 })
 export class EnergyLogComponent implements OnInit {
 
-  @Input() energyElements!: BPT[];
+  energyElements!: BPT[];
   energyHours!: string[];
   HourSelected!: number;
   
   constructor(private service:BPTService) { }
 
   ngOnInit(): void {
-    // TODO: get elements of today
-    this.energyElements = this.service.getTodayBPT();
-    // extract all hours(1-24) from the main obj 
-    this.energyHours = this.energyElements.map(el => el.hour);
+    // get an array of obj BPT of current day
+    this.service.getTodayBPT().subscribe(BPT => {
+      this.energyElements = BPT;
+      // extract all hours(1-24) from the main obj 
+      this.energyHours = this.energyElements.map(el => el.hour);
+    });
     
   }
   ngAfterViewInit(): void{
@@ -89,6 +91,7 @@ export class EnergyLogComponent implements OnInit {
       $('.energy_bar app-energy-bar-item > .energy svg').css('fill','#C2C6EF');
       // set energy bar icons color to yellow (there will be as many yellow icons as the energy value of the energy obj)
       $('.energy_bar app-energy-bar-item:nth-child(-n+' + value + ') > .energy svg').css('fill','#FFC107');
+      // update energy levels of selected obj
       this.service.UpdateBPT(this.HourSelected, value);
     }
     

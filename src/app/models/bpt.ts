@@ -1,5 +1,5 @@
 export class BPT {
-    day!: number;
+    day!: Date;
     hour!: string;
     energy!: number;
     activity!: string;
