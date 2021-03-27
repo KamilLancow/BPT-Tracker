@@ -26,4 +26,3 @@ I raccomend installing [nodemon](https://github.com/remy/nodemon). It's a tool t
 
 Then run `$ nodemon index.js` in your console. Now the server listens to HTTP requests sent to `http://localhost:3000/`.
 
-## NOTE: The project is under development.
