@@ -25,3 +25,5 @@ Run `$ node index.js` in your console. Note that using this command you would ne
 I raccomend installing [nodemon](https://github.com/remy/nodemon). It's a tool that automatically restarts the node application when file changes in the directory are detected.
 
 Then run `$ nodemon index.js` in your console. Now the server listens to HTTP requests sent to `http://localhost:3000/`.
+
+## NOTE: The project is under development.
