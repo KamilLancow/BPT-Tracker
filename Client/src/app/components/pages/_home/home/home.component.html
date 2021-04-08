@@ -1,4 +1,4 @@
-<div>
-    <app-energy-log></app-energy-log>
+<div *ngIf="BPT">
+    <app-energy-log [(energyElements)]="BPT"></app-energy-log>
     <app-time-log></app-time-log>
 </div>
