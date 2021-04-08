@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BPT } from 'src/app/models/bpt';
 import * as jquery from 'jquery';
 import { BPTService } from 'src/app/services/bpt.service';
@@ -7,27 +7,32 @@ const $: JQueryStatic = jquery;
 @Component({
   selector: 'app-energy-log',
   templateUrl: './energy-log.component.html',
-  styleUrls: ['./energy-log.component.css']
+  styleUrls: ['./energy-log.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EnergyLogComponent implements OnInit {
 
-  energyElements!: BPT[];
+  @Input() energyElements!: BPT[];
+  @Output() energyElementsChange = new EventEmitter<BPT[]>();
   energyHours!: string[];
   HourSelected!: number;
-  
-  constructor(private service:BPTService) { }
+
+  constructor(private service:BPTService, private ref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    // get an array of obj BPT of current day
-    this.service.getTodayBPT().subscribe(BPT => {
-      this.energyElements = BPT;
       // extract all hours(1-24) from the main obj 
       this.energyHours = this.energyElements.map(el => el.hour);
-    });
-    
+      // centers current hour after 10ms (cant find a more efficent way to execute that code right after .items is populated with child-components)
+      setTimeout(() => this.centerCurrentHour(), 10);
+      console.log('energy-log executed');
   }
-  ngAfterViewInit(): void{
-    this.centerCurrentHour();
+
+  ngOnChanges() {
+    console.log('onchanges energylog');
+    this.energyHours = this.energyElements.map(el => el.hour);
+    this.disableEnergyBar();
+    this.centerCurrentHour();// need to fix 
+    console.log('energyelements updated', this.energyElements);
   }
 
   onHourSelected(hour: number) {
@@ -49,6 +54,17 @@ export class EnergyLogComponent implements OnInit {
       element.css('cursor','pointer');
       element.css('opacity','1');
     }
+  }
+
+  disableEnergyBar() {
+    // set energy bar to not clickable
+    let element = $('.energy_bar app-energy-bar-item > .energy');
+    element.css('cursor','not-allowed');
+    element.css('opacity','0.5');
+    // reset energy bar color
+    $('.energy_bar app-energy-bar-item > .energy svg').css('fill','#C2C6EF');
+    // reset hour selected
+    document.querySelectorAll(".hours app-energy-item .element").forEach(element => element.classList.remove("selected-energy-item"));
   }
 
   setEnergyBar(hour: number) {
@@ -91,11 +107,16 @@ export class EnergyLogComponent implements OnInit {
       $('.energy_bar app-energy-bar-item > .energy svg').css('fill','#C2C6EF');
       // set energy bar icons color to yellow (there will be as many yellow icons as the energy value of the energy obj)
       $('.energy_bar app-energy-bar-item:nth-child(-n+' + value + ') > .energy svg').css('fill','#FFC107');
-      // update energy levels of selected obj
-      this.service.UpdateBPT(this.HourSelected, value);
-    }
-    
+      // update energy levels of selected obj (send data to parent component to sinchronize data)
+      // Update BPT on the Client
+      this.energyElements.forEach(element => {
+        if(element.hour == String(this.HourSelected)+':00') element.energy = value;});// update visually
+      this.energyElementsChange.emit(this.energyElements);// update value in parent component
+      console.log('energylog modifyEnergy', this.HourSelected,value);
+      console.log(this.energyElements.filter( value => value.hour == String(this.HourSelected)+':00')[0]);
+      // Update BPT on the Server
 
+    }
   }
 
 }

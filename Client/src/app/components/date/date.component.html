@@ -5,6 +5,6 @@
         </span>
         {{ day | date:'EEEE, d MMMM y'}}
     </div>
-    <input matInput [matDatepicker]="picker" [value]="day" (dateChange)="addEvent($event)" disabled>
+    <input matInput [matDatepicker]="picker" [value]="day" (dateChange)="changeDate($event)" disabled>
     <mat-datepicker #picker disabled="false"></mat-datepicker>
 </div>

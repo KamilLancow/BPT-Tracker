@@ -92,7 +92,3 @@ app-energy-bar-item {
 app-energy-bar-item:last-child {
     margin-right: 0;
 }
-
-::ng-deep .energy_bar app-energy-bar-item:nth-child(-n+10) > .energy svg { /*to do dinamically*/
-    /* fill: #FFC107; */
-}

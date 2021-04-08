@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +24,7 @@ import { DateAdapter, MatNativeDateModule } from "@angular/material/core";
 import { CustomDateAdapter } from './components/date/custom-date-adapter';
 import {MatIconModule} from '@angular/material/icon';
 import { EnergyBarItemComponent } from './components/pages/_home/energy-bar-item/energy-bar-item.component';
+import { BPTService } from './services/bpt.service';
 
 @NgModule({
   declarations: [
@@ -53,8 +54,16 @@ import { EnergyBarItemComponent } from './components/pages/_home/energy-bar-item
     MatNativeDateModule
   ],
   providers: [
-    {provide: DateAdapter, useClass: CustomDateAdapter}
+    {provide: DateAdapter, useClass: CustomDateAdapter},
+    BPTService,
+    {provide: APP_INITIALIZER, useFactory: InitService, deps: [BPTService], multi: true}
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function InitService(service: BPTService) {
+  return (): Promise<any> => { 
+    return service.Init();
+  }
+}
